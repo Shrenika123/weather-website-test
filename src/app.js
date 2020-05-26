@@ -19,9 +19,6 @@ app.use(express.static(pub))
 
 
 app.get('', (req, res) => {
-    if(!req.query.search)
-     return res.send('error')
-
     res.render('index', {
         title: 'Weather',
         name: 'Andrew Mead'
