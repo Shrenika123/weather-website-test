@@ -3,9 +3,9 @@ const path=require('path')
 const hbs=require('hbs')
 const request=require('request')
 const forecast=require('./utils/forecast')
-
-
+const port=process.env.PORT || 3000
 const app=express()
+
 const pub=path.join(__dirname,'../public')
 const vie=path.join(__dirname,'../templates/views')
 
@@ -19,6 +19,9 @@ app.use(express.static(pub))
 
 
 app.get('', (req, res) => {
+    if(!req.query.search)
+     return res.send('error')
+
     res.render('index', {
         title: 'Weather',
         name: 'Andrew Mead'
@@ -62,6 +65,6 @@ app.get('*',(req,res)=>{
 
 })
 
-app.listen(3000,()=>{
-    console.log("server is starting")
+app.listen(port,()=>{
+    console.log("server is starting"+port)
 })
